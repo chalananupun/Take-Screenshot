@@ -1,0 +1,43 @@
+package webcam_an_screenshots;
+
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Ninja
+ */
+public class Get_ScreenShot {
+
+    static void get() {
+        try {
+            Toolkit.getDefaultToolkit().beep();
+            int count = 10;// your screenshot count
+            for (int i = 0; i < count; i++) {
+                
+                Thread.sleep(1); // screenshot take delay
+                Toolkit tk = Toolkit.getDefaultToolkit();
+                Dimension d = tk.getScreenSize();
+                Rectangle rec = new Rectangle(0, 0, d.width, d.height);
+                Robot ro = new Robot();
+                BufferedImage img = ro.createScreenCapture(rec);
+                String file_path ="E:\\Researches\\screen\\image"+i+".jpg; //i contact for image name /your file save path
+                File f = new File(file_path);
+                ImageIO.write(img, "jpg", f);
+
+            }
+            JOptionPane.showMessageDialog(null, "Done !");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public static void main(String[] args) {
+        get();
+    }
+}
